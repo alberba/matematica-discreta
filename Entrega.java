@@ -96,14 +96,39 @@ class Entrega {
     }
 
     /*
-     * És cert que ¬(∃x. ∀y. y ⊆ x) ?
-     *
+     * �s cert que �(?x. ?y. y ? x) ?
+     *  ?x:?y: �(y ? x)
      * Observau que els membres de l'univers són arrays, tractau-los com conjunts i podeu suposar
      * que cada un d'ells està ordenat de menor a major.
      */
     static boolean exercici3(int[][] universe) {
-      
-      return false; // TO DO
+        int condicionesNoCumplidas,xcorrectos=0;
+        for(int [] x:universe){
+            condicionesNoCumplidas=0;
+            for (int [] y:universe){
+                boolean [] existeEnX=new boolean[y.length];
+                for(int xn:x){
+                    for(int yn:y){
+                        if(yn==xn){
+                            existeEnX[yn]=true;
+                        }
+                    }
+                }
+                for(int i:y){
+                    if (!existeEnX[i]){
+                        condicionesNoCumplidas++;
+                    }
+                }
+            }
+            if(condicionesNoCumplidas==0){
+                xcorrectos++;           
+            }
+        }
+        if(xcorrectos>1){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /*
