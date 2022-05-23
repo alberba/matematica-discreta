@@ -74,7 +74,16 @@ class Entrega {
      * És cert que ∃!x. ∀y. Q(y) -> P(x) ?
      */
     static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
-      return false; // TO DO
+      for(x:universe){
+        for (y:universe){
+          if(!q.test(y)){
+            if(p.test(x))){
+              return false;
+            }  
+          }  
+        }
+      }
+      return true;
     }
 
     /*
@@ -84,6 +93,7 @@ class Entrega {
      * que cada un d'ells està ordenat de menor a major.
      */
     static boolean exercici3(int[][] universe) {
+      
       return false; // TO DO
     }
 
