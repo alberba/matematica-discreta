@@ -71,7 +71,7 @@ class Entrega {
     }
 
     /*
-     * És cert que ?!x. ?y. Q(y) -> P(x) ?
+     * És cert que ∃!x. ∀y. Q(y) -> P(x) ? ?
      */
     static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
         int condicionesNoCumplidas,xcorrectos=0;
