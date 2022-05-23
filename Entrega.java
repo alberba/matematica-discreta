@@ -1,5 +1,3 @@
-//tu madre
-
 import java.lang.AssertionError;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,8 +26,8 @@ import java.util.Set;
  *
  * Podeu fer aquesta entrega en grups de com a màxim 3 persones, i necessitareu com a minim Java 8.
  * Per entregar, posau a continuació els vostres noms i entregau únicament aquest fitxer.
- * - Nom 1:
- * - Nom 2:
+ * - Nom 1: Santiago Rattenbach Paliza-Bartolomé
+ * - Nom 2: Albert Salom Vanrell
  * - Nom 3:
  *
  * L'entrega es farà a través d'una tasca a l'Aula Digital abans de la data que se us hagui
@@ -60,8 +58,16 @@ class Entrega {
         BiPredicate<Integer, Integer> p,
         Predicate<Integer> q,
         Predicate<Integer> r) {
-
-      return false; // TO DO
+      for(x:universe){
+        for (y:universe){
+          if(p.test(x,y)){
+            if(!(q.test(x)&&r.test(y))){
+              return false;
+            }  
+          }  
+        }
+      }
+      return true;
     }
 
     /*
