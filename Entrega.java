@@ -51,7 +51,7 @@ class Entrega {
    */
   static class Tema1 {
     /*
-     * Ã‰s cert que âˆ€x,y. P(x,y) -> Q(x) ^ R(y) ?
+     * Ã‰s cert que ?x,y. P(x,y) -> Q(x) ^ R(y) ?
      */
     static boolean exercici1(
         int[] universe,
@@ -71,7 +71,7 @@ class Entrega {
     }
 
     /*
-     * Ã‰s cert que âˆƒ!x. âˆ€y. Q(y) -> P(x) ? ?
+     * Ã‰s cert que ?!x. ?y. Q(y) -> P(x) ?
      */
     static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
         int condicionesNoCumplidas,xcorrectos=0;
@@ -88,54 +88,63 @@ class Entrega {
                 xcorrectos++;           
             }
         }
-        if(xcorrectos==1) {
-            return true;
-        } else {
-            return false;
-        }
+        return xcorrectos==1;
     }
 
     /*
-     * És cert que ¬(?x. ?y. y ? x) ?
-     *  ?x:?y: ¬(y ? x)
+     * És cert que �(?x. ?y. y ? x) ?
+     * ?x: ?y. �(y ? x)
      * Observau que els membres de l'univers sÃ³n arrays, tractau-los com conjunts i podeu suposar
      * que cada un d'ells estÃ  ordenat de menor a major.
      */
     static boolean exercici3(int[][] universe) {
-        int condicionesNoCumplidas,xcorrectos=0;
-        for(int [] y:universe) {
-            condicionesNoCumplidas=0;
-            for (int [] x:universe) {
-                boolean [] existeEnY=new boolean[x.length];
-                for(int xn:x) {
-                    for(int yn:y) {
-                        if(yn==xn) {
-                            existeEnY[xn]=true;
+        boolean existeX = false;
+        for (int[] y : universe) {
+            for (int[] x : universe) {
+                if (x.length < y.length) {
+                    existeX = false;
+                } else {
+                    int pertenecenA_X = 0;
+                    for (int yn:y) {
+                        boolean tieneX=false;
+                        for (int xn:x){
+                            if (!tieneX && (yn == xn)) {
+                                pertenecenA_X++;
+                                tieneX=true;
+                            }
+                        }
+                        if (!existeX) {
+                            existeX = (pertenecenA_X == y.length);
                         }
                     }
                 }
-                for(int i:y) {
-                    if (!existeEnY[i]) {
-                        condicionesNoCumplidas++;
-                    }
-                }
             }
-            if(condicionesNoCumplidas==0) {
-                xcorrectos++;           
+            if (!existeX) {
+                return true;
             }
         }
-        if(xcorrectos>1) {
-            return true;
-        }else{
-            return false;
-        }
+        return false;
     }
 
     /*
-     * Ã‰s cert que âˆ€x. âˆƒ!y. xÂ·y â‰¡ 1 (mod n) ?
+     * Ã‰s cert que ?x. ?!y. x�y ? 1 (mod n) ?
      */
     static boolean exercici4(int[] universe, int n) {
-      return false; // TO DO
+        for (int x:universe){
+            boolean tieneUnaY=false;
+            for(int y:universe){
+                if((x*y)%n==1){
+                    if(tieneUnaY){
+                        return false;
+                    }
+                    tieneUnaY=true;        
+                }
+            }
+            if(!tieneUnaY){
+                return false;
+            }  
+        }
+        return true;
     }
 
     /*
@@ -236,7 +245,17 @@ class Entrega {
      * tant `a` com cada un dels elements de `p` estÃ  ordenat de menor a major.
      */
     static boolean exercici1(int[] a, int[][] p) {
-      return false; // TO DO
+        for(int [] pn:p){
+            boolean [] enUso=new boolean[a.length];
+            for(int an:a){
+                for(int pni:pn){
+                    if (pni==an){
+                        
+                    }
+                }
+            }
+        }
+        return false; // TO DO
     }
 
     /*
