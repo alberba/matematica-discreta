@@ -245,17 +245,24 @@ class Entrega {
      * tant `a` com cada un dels elements de `p` estÃ  ordenat de menor a major.
      */
     static boolean exercici1(int[] a, int[][] p) {
+        boolean [] enUso=new boolean[a.length];
         for(int [] pn:p){
-            boolean [] enUso=new boolean[a.length];
-            for(int an:a){
-                for(int pni:pn){
-                    if (pni==an){
-                        
+            boolean [] enUsoParticion=new boolean[pn.length];
+            for(int an=0;an<a.length;an++){
+                for(int pni=0;pni<pn.length;pni++){
+                    if (pn[pni]==a[an]&&!enUso[an]){
+                        enUso[an]=true;
+                        enUsoParticion[pni]=true;
                     }
+                } 
+            }
+            for(int pni=0;pni<pn.length;pni++){
+                if(!enUsoParticion[pni]){
+                    return false;
                 }
             }
         }
-        return false; // TO DO
+        return true;
     }
 
     /*
@@ -264,7 +271,65 @@ class Entrega {
      * Podeu soposar que `x` pertany a `a` i que `a` estÃ  ordenat de menor a major.
      */
     static boolean exercici2(int[] a, int[][] rel, int x) {
-      return false; // TO DO
+        boolean esRef,esAntisi,esTrans=false;
+        boolean [] cumpleCondicion;
+        
+        if (a[0]!=x){
+            return false;
+        }
+        
+        cumpleCondicion=new boolean[a.length];
+        for(int an=0;an<a.length;an++){    
+            for(int [] reln:rel){
+                if(a[an]==reln[0]&&a[an]==reln[1]){
+                    cumpleCondicion[an]=true;
+                }
+            }
+        }
+        for(int an=0;an<a.length;an++){ 
+            if (!cumpleCondicion[an]){
+                return false;
+            }
+        }
+        esRef=true;
+        
+        for(int an=0;an<a.length;an++){    
+            for(int [] reln1:rel){
+                int x1=reln1[0],y1=reln1[1];
+                for(int [] reln2:rel){
+                    int x2=reln2[0],y2=reln2[1];
+                    if(x1==y2&&x2==y1){
+                        if(!(x1==y1)){
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        esAntisi=true;
+        
+        for(int an=0;an<a.length;an++){    
+            for(int [] reln1:rel){
+                int x1=reln1[0],y1=reln1[1];
+                for(int [] reln2:rel){
+                    int x2=reln2[0],y2=reln2[1];
+                    if(y1==x2&&x1!=y2){
+                        esTrans=false;
+                        for(int [] reln3:rel){
+                            int x3=reln3[0],y3=reln3[1];
+                            if(x3==x1&&y3==y2){
+                                esTrans=true;
+                            }
+                        }
+                        if(!esTrans){
+                            return false;
+                        }
+                    }
+                }
+            }    
+        }
+        
+        return true;
     }
 
     /*
