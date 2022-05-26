@@ -338,7 +338,22 @@ class Entrega {
      * que `y` pertany a `codom` i que tant `dom` com `codom` tambÃ© estÃ n ordenats de menor a major.
      */
     static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
-      return new int[]{}; // TO DO
+        int indiceCumplen=0;
+        int [] numsSeCumplen=new int[dom.length];
+        for(int x:dom){
+            if(f.apply(x)==y){
+                numsSeCumplen[indiceCumplen]=x;
+                indiceCumplen++;
+                
+            }
+        }
+        int [] antiImagen=new int[indiceCumplen];
+        for(int indice=0;indice<indiceCumplen;indice++){
+            antiImagen[indice]=numsSeCumplen[indice];
+        }
+        Arrays.sort(antiImagen);
+        
+        return antiImagen; // TO DO
     }
 
     /*
