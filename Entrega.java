@@ -273,8 +273,14 @@ class Entrega {
     static boolean exercici2(int[] a, int[][] rel, int x) {
         boolean esRef,esAntisi,esTrans=false;
         boolean [] cumpleCondicion;
+        int relacionesX=0;
         
-        if (a[0]!=x){
+        for(int [] reln:rel){
+            if(x==reln[0]){
+                relacionesX++;
+            }
+        }
+        if(relacionesX!=a.length){
             return false;
         }
         
@@ -372,7 +378,30 @@ class Entrega {
     static final int BIJECTIVE = INJECTIVE + SURJECTIVE;
 
     static int exercici4(int[] dom, int[] codom, Function<Integer, Integer> f) {
-      return -1; // TO DO
+        int [] numAntiImagen=new int[codom.length];
+        boolean esInyectiva=true,esExhaustiva=true;
+        for(int y=0;y<codom.length;y++){
+            for(int x:dom){
+                if(f.apply(x)==codom[y]){
+                    numAntiImagen[y]++;
+                }
+                if(numAntiImagen[y]>1){
+                    esInyectiva=false;
+                }
+            }
+            if(numAntiImagen[y]==0){
+                esExhaustiva=false;
+            }
+        }
+        if(esInyectiva&&!esExhaustiva){
+            return INJECTIVE;
+        }else if(!esInyectiva&&esExhaustiva){
+            return SURJECTIVE;
+        }else if(esInyectiva&&esExhaustiva) {
+            return BIJECTIVE;
+        }else{
+            return NOTHING_SPECIAL;
+        }
     }
 
     /*
@@ -405,7 +434,7 @@ class Entrega {
         for (int j = 1; j <= i; j++) {
           if (i % j == 0) {
             // i ÃƒÂ©s mÃƒÂºltiple de j, ÃƒÂ©s a dir, j|i
-            divisibility.add(new int[] { i, j });
+            divisibility.add(new int[] { j, i });
           }
         }
       }
@@ -413,7 +442,7 @@ class Entrega {
       assertThat(
           exercici2(
               new int[] { 1, 2, 3, 4, 5, 6, 7 },
-              divisibility.toArray(new int[][] {}),
+              divisibility.toArray(new int[][] {}), //{(1,2),(1,3),(2,4),(2,6),(3,6),(4,8)}
               1
           )
       );
@@ -513,7 +542,23 @@ class Entrega {
      * Podeu suposar que `a` i `b` sÃƒÂ³n positius.
      */
     static int exercici1(int a, int b) {
-      return -1; // TO DO
+        int divisor, dividendo;
+        if (a>b) {
+            divisor=b;
+            dividendo=a;
+        }
+        else {
+            divisor=a;
+            dividendo=b;
+        }
+        int resto=dividendo%divisor;
+        
+        while(resto!=0) {
+            dividendo=divisor;
+            divisor=resto;
+            resto=dividendo%divisor;
+        } 
+        return divisor; // TO DO
     }
 
     /*
@@ -522,7 +567,8 @@ class Entrega {
      * Podeu suposar que `a`, `b` i `c` sÃƒÂ³n positius.
      */
     static boolean exercici2(int a, int b, int c) {
-      return false; // TO DO
+        int mcd=exercici1(a,b);
+        return (c%mcd==0); // TO DO
     }
 
     /*
@@ -531,7 +577,17 @@ class Entrega {
      * Retornau l'invers sempre entre 1 i `n-1`, en cas que no existeixi retornau -1
      */
     static int exercici3(int a, int n) {
-      return -1; // TO DO
+        int resultado;
+        if (exercici1(a,n)!=1) {
+            return -1; 
+        }
+        for (int x=0;x<n;x++) {
+            resultado=((a*x)%n);
+            if (resultado==1) {
+                return x;
+            }
+        }
+        return -1; // TO DO
     }
 
     /*
@@ -564,6 +620,77 @@ class Entrega {
       assertThat(exercici3(2, 6) == -1);
     }
   }
+  
+  static class Tema4 {
+    /*
+     * Donada una matriu d'adjacencia `A` d'un graf no dirigit, retornau l'ordre i la mida del graf.
+     */
+    static int[] exercici1(int[][] A) {
+      return new int[]{}; // TO DO
+    }
+
+    /*
+     * Donada una matriu d'adjacencia `A` d'un graf no dirigit, digau si el graf es eulerià.
+     */
+    static boolean exercici2(int[][] A) {
+      return false; // TO DO
+    }
+
+    /*
+     * Donat `n` el número de fulles d'un arbre arrelat i `d` el nombre de fills dels nodes interiors,
+     * retornau el nombre total de vèrtexos de l'arbre
+     *
+     */
+    static int exercici3(int n, int d) {
+      return -1; // TO DO
+    }
+
+    /*
+     * Donada una matriu d'adjacencia `A` d'un graf connex no dirigit, digau si el graf conté algún cicle.
+     */
+    static boolean exercici4(int[][] A) {
+      return false; // TO DO
+    }
+    /*
+     * Aquí teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
+     */
+    static void tests() {
+      // Exercici 1
+      // `ordre i mida`
+
+      assertThat(
+              exercici1(new int[][] { {0, 1, 0}, {1, 0, 1}, {0,1, 0}}) == new int[] {3, 3}
+      );
+
+      assertThat(
+              exercici1(new int[][] { {0, 1, 0, 1}, {1, 0, 1, 1}, {0 , 1, 0, 1}, {1, 1, 1, 0}}) == new int[] {4, 5}
+      );
+
+      // Exercici 2
+      // `Es eulerià?`
+
+      assertThat(
+              exercici2(new int[][] { {0, 1, 1}, {1, 0, 1}, {1, 1, 0}})
+      );
+      assertThat(
+              !exercici2(new int[][] { {0, 1, 0}, {1, 0, 1}, {0,1, 0}})
+      );
+      // Exercici 3
+      // `Quants de nodes té l'arbre?`
+      assertThat(exercici3(5, 2) == 9);
+      assertThat(exercici3(7, 3) == 10);
+
+      // Exercici 4
+      // `Conté algún cicle?`
+      assertThat(
+              !exercici4(new int[][] { {0, 1, 1}, {1, 0, 1}, {1, 1, 0}})
+      );
+      assertThat(
+              exercici4(new int[][] { {0, 1, 0}, {1, 0, 1}, {0, 1, 0}})
+      );
+
+    }
+  }
 
   /*
    * Aquest mÃƒÂ¨tode `main` contÃƒÂ© alguns exemples de parÃƒÂ metres i dels resultats que haurien de donar
@@ -576,6 +703,7 @@ class Entrega {
     Tema1.tests();
     Tema2.tests();
     Tema3.tests();
+    Tema4.tests();
   }
 
   static void assertThat(boolean b) {
