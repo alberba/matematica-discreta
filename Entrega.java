@@ -60,6 +60,7 @@ class Entrega {
         Predicate<Integer> r) {
         for(int x:universe) {
             for (int y:universe) {
+                // !(P(x,y) -> Q(x) ^ R(y)) == P(x,y) ^ !(Q(x) ^ R(y))                
                 if(p.test(x,y)) {
                     if(!(q.test(x)&&r.test(y))) {
                         return false;
@@ -628,12 +629,16 @@ class Entrega {
     static int[] exercici1(int[][] A) {
         int ordre=0;
         int mida=0;
+        //cada fila de la matriz es un nodo
         for (int [] v:A) {
             ordre++;
+            //los elementos de una fila representan las aristas
             for (int vi:v) {
                 mida+=vi;
             }
         }
+        //las aristas se cuentan dos veces en la matriz, por tanto
+        //dividimos entre 2
         mida/=2;
       return new int[]{ordre, mida}; // TO DO
     }
@@ -642,11 +647,13 @@ class Entrega {
      * Donada una matriu d'adjacencia `A` d'un graf no dirigit, digau si el graf es eulerià.
      */
     static boolean exercici2(int[][] A) {
+        //determinamos el grado de cada nodo
         for (int [] v:A) {
             int aristas=0;
             for (int vi:v) {
                 aristas+=vi;
             }
+            //si un nodo tiene un número de aristas impares, no es euleriano
             if (aristas%2==1) {
                 return false;
             }
@@ -660,20 +667,19 @@ class Entrega {
      *
      */
     static int exercici3(int n, int d) {
-      //dado n el numero de fulles de un arbol y d el numero de hijos de los nodos interiores devuelve el numero total de vertices del arbol
-           return 777; 
+        //utilitzant la regla de les mans entrecreuades, acabam amb una equació
+        //de primer grau on el resultat és el següent
+        return (n*d-1)/(d-1);
     }
 
     /*
      * Donada una matriu d'adjacencia `A` d'un graf connex no dirigit, digau si el graf conté algún cicle.
      */
     static boolean exercici4(int[][] A) {
-        for (int [] v:A) {
-            for (int vi:v) {
-                
-            }
-        }
-      return false; // TO DO
+        //obtenim les dades (datos[0]=orde, datos[1]=mida) utilitzant l'exercici 1
+        int [] datos=exercici1(A);
+        //l'únic graf sense cicles és un arbre, amb el qual V-1=E
+        return datos[0]-1 != datos[1]; 
     }
     /*
      * Aquí teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
