@@ -626,14 +626,32 @@ class Entrega {
      * Donada una matriu d'adjacencia `A` d'un graf no dirigit, retornau l'ordre i la mida del graf.
      */
     static int[] exercici1(int[][] A) {
-      return new int[]{}; // TO DO
+        int ordre=0;
+        int mida=0;
+        for (int [] v:A) {
+            ordre++;
+            for (int vi:v) {
+                mida+=vi;
+            }
+        }
+        mida/=2;
+      return new int[]{ordre, mida}; // TO DO
     }
 
     /*
      * Donada una matriu d'adjacencia `A` d'un graf no dirigit, digau si el graf es eulerià.
      */
     static boolean exercici2(int[][] A) {
-      return false; // TO DO
+        for (int [] v:A) {
+            int aristas=0;
+            for (int vi:v) {
+                aristas+=vi;
+            }
+            if (aristas%2==1) {
+                return false;
+            }
+        }
+      return true; // TO DO
     }
 
     /*
@@ -642,13 +660,19 @@ class Entrega {
      *
      */
     static int exercici3(int n, int d) {
-      return -1; // TO DO
+      //dado n el numero de fulles de un arbol y d el numero de hijos de los nodos interiores devuelve el numero total de vertices del arbol
+           return 777; 
     }
 
     /*
      * Donada una matriu d'adjacencia `A` d'un graf connex no dirigit, digau si el graf conté algún cicle.
      */
     static boolean exercici4(int[][] A) {
+        for (int [] v:A) {
+            for (int vi:v) {
+                
+            }
+        }
       return false; // TO DO
     }
     /*
@@ -659,11 +683,11 @@ class Entrega {
       // `ordre i mida`
 
       assertThat(
-              exercici1(new int[][] { {0, 1, 0}, {1, 0, 1}, {0,1, 0}}) == new int[] {3, 3}
+              Arrays.equals(exercici1(new int[][] { {0, 1, 0}, {1, 0, 1}, {0,1, 0}}), new int[] {3, 2})
       );
 
       assertThat(
-              exercici1(new int[][] { {0, 1, 0, 1}, {1, 0, 1, 1}, {0 , 1, 0, 1}, {1, 1, 1, 0}}) == new int[] {4, 5}
+              Arrays.equals(exercici1(new int[][] { {0, 1, 0, 1}, {1, 0, 1, 1}, {0 , 1, 0, 1}, {1, 1, 1, 0}}), new int[] {4, 5})
       );
 
       // Exercici 2
@@ -683,10 +707,10 @@ class Entrega {
       // Exercici 4
       // `Conté algún cicle?`
       assertThat(
-              !exercici4(new int[][] { {0, 1, 1}, {1, 0, 1}, {1, 1, 0}})
+              exercici4(new int[][] { {0, 1, 1}, {1, 0, 1}, {1, 1, 0}})
       );
       assertThat(
-              exercici4(new int[][] { {0, 1, 0}, {1, 0, 1}, {0, 1, 0}})
+              !exercici4(new int[][] { {0, 1, 0}, {1, 0, 1}, {0, 1, 0}})
       );
 
     }
