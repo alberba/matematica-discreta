@@ -8,50 +8,50 @@ import java.util.function.Predicate;
 import java.util.Set;
 
 /*
- * Aquesta entrega consisteix en implementar tots els mÃ¨todes annotats amb el comentari "// TO DO".
+ * Aquesta entrega consisteix en implementar tots els mÃƒÂ¨todes annotats amb el comentari "// TO DO".
  *
- * Cada tema tÃ© el mateix pes, i l'avaluaciÃ³ consistirÃ  en:
+ * Cada tema tÃƒÂ© el mateix pes, i l'avaluaciÃƒÂ³ consistirÃƒÂ  en:
  *
- * - Principalment, el correcte funcionament de cada mÃ¨tode (provant amb diferents entrades). Teniu
- *   alguns exemples al mÃ¨tode `main`.
+ * - Principalment, el correcte funcionament de cada mÃƒÂ¨tode (provant amb diferents entrades). Teniu
+ *   alguns exemples al mÃƒÂ¨tode `main`.
  *
- * - La neteja del codi (pensau-ho com faltes d'ortografia). L'estÃ ndar que heu de seguir Ã©s la guia
- *   d'estil de Google per Java: https://google.github.io/styleguide/javaguide.html . No Ã©s
- *   necessari seguir-la estrictament, perÃ² ens basarem en ella per jutjar si qualcuna se'n desvia
+ * - La neteja del codi (pensau-ho com faltes d'ortografia). L'estÃƒÂ ndar que heu de seguir ÃƒÂ©s la guia
+ *   d'estil de Google per Java: https://google.github.io/styleguide/javaguide.html . No ÃƒÂ©s
+ *   necessari seguir-la estrictament, perÃƒÂ² ens basarem en ella per jutjar si qualcuna se'n desvia
  *   molt.
  *
- * Per com estÃ  plantejada aquesta entrega, no necessitau (ni podeu) utilitzar cap `import`
- * addicional, ni mÃ¨todes de classes que no estiguin ja importades. El que sÃ­ podeu fer Ã©s definir
- * tots els mÃ¨todes addicionals que volgueu (de manera ordenada i dins el tema que pertoqui).
+ * Per com estÃƒÂ  plantejada aquesta entrega, no necessitau (ni podeu) utilitzar cap `import`
+ * addicional, ni mÃƒÂ¨todes de classes que no estiguin ja importades. El que sÃƒÂ­ podeu fer ÃƒÂ©s definir
+ * tots els mÃƒÂ¨todes addicionals que volgueu (de manera ordenada i dins el tema que pertoqui).
  *
- * Podeu fer aquesta entrega en grups de com a mÃ xim 3 persones, i necessitareu com a minim Java 8.
- * Per entregar, posau a continuaciÃ³ els vostres noms i entregau Ãºnicament aquest fitxer.
- * - Nom 1: Santiago Rattenbach Paliza-BartolomÃ©
+ * Podeu fer aquesta entrega en grups de com a mÃƒÂ xim 3 persones, i necessitareu com a minim Java 8.
+ * Per entregar, posau a continuaciÃƒÂ³ els vostres noms i entregau ÃƒÂºnicament aquest fitxer.
+ * - Nom 1: Santiago Rattenbach Paliza-BartolomÃƒÂ©
  * - Nom 2: Albert Salom Vanrell
  * - Nom 3:
  *
- * L'entrega es farÃ  a travÃ©s d'una tasca a l'Aula Digital abans de la data que se us hagui
- * comunicat i vos recomanam que treballeu amb un fork d'aquest repositori per seguir mÃ©s fÃ cilment
- * les actualitzacions amb enunciats nous. Si no podeu visualitzar bÃ© algun enunciat, assegurau-vos
- * que el vostre editor de texte estigui configurat amb codificaciÃ³ UTF-8.
+ * L'entrega es farÃƒÂ  a travÃƒÂ©s d'una tasca a l'Aula Digital abans de la data que se us hagui
+ * comunicat i vos recomanam que treballeu amb un fork d'aquest repositori per seguir mÃƒÂ©s fÃƒÂ cilment
+ * les actualitzacions amb enunciats nous. Si no podeu visualitzar bÃƒÂ© algun enunciat, assegurau-vos
+ * que el vostre editor de texte estigui configurat amb codificaciÃƒÂ³ UTF-8.
  */
 class Entrega {
   /*
-   * AquÃ­ teniu els exercicis del Tema 1 (LÃ²gica).
+   * AquÃƒÂ­ teniu els exercicis del Tema 1 (LÃƒÂ²gica).
    *
-   * Els mÃ¨todes reben de parÃ metre l'univers (representat com un array) i els predicats adients
-   * (per exemple, `Predicate<Integer> p`). Per avaluar aquest predicat, si `x` Ã©s un element de
-   * l'univers, podeu fer-ho com `p.test(x)`, tÃ© com resultat un booleÃ . Els predicats de dues
-   * variables sÃ³n de tipus `BiPredicate<Integer, Integer>` i similarment s'avaluen com
+   * Els mÃƒÂ¨todes reben de parÃƒÂ metre l'univers (representat com un array) i els predicats adients
+   * (per exemple, `Predicate<Integer> p`). Per avaluar aquest predicat, si `x` ÃƒÂ©s un element de
+   * l'univers, podeu fer-ho com `p.test(x)`, tÃƒÂ© com resultat un booleÃƒÂ . Els predicats de dues
+   * variables sÃƒÂ³n de tipus `BiPredicate<Integer, Integer>` i similarment s'avaluen com
    * `p.test(x, y)`.
    *
    * En cada un d'aquests exercicis us demanam que donat l'univers i els predicats retorneu `true`
-   * o `false` segons si la proposiciÃ³ donada Ã©s certa (suposau que l'univers Ã©s suficientment
-   * petit com per utilitzar la forÃ§a bruta)
+   * o `false` segons si la proposiciÃƒÂ³ donada ÃƒÂ©s certa (suposau que l'univers ÃƒÂ©s suficientment
+   * petit com per utilitzar la forÃƒÂ§a bruta)
    */
   static class Tema1 {
     /*
-     * Ã‰s cert que ?x,y. P(x,y) -> Q(x) ^ R(y) ?
+     * Ãƒâ€°s cert que ?x,y. P(x,y) -> Q(x) ^ R(y) ?
      */
     static boolean exercici1(
         int[] universe,
@@ -72,7 +72,7 @@ class Entrega {
     }
 
     /*
-     * Ã‰s cert que ?!x. ?y. Q(y) -> P(x) ?
+     * Ãƒâ€°s cert que ?!x. ?y. Q(y) -> P(x) ?
      */
     static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
         int condicionesNoCumplidas,xcorrectos=0;
@@ -93,15 +93,16 @@ class Entrega {
     }
 
     /*
-     * És cert que �(?x. ?y. y ? x) ?
-     * ?x: ?y. �(y ? x)
-     * Observau que els membres de l'univers sÃ³n arrays, tractau-los com conjunts i podeu suposar
-     * que cada un d'ells estÃ  ordenat de menor a major.
+     * Ã‰s cert que ¬(?x. ?y. y ? x) ?
+     * ?x: ?y. ¬(y ? x)
+     * Observau que els membres de l'univers sÃƒÂ³n arrays, tractau-los com conjunts i podeu suposar
+     * que cada un d'ells estÃƒÂ  ordenat de menor a major.
      */
     static boolean exercici3(int[][] universe) {
         boolean existeX = false;
         for (int[] y : universe) {
             for (int[] x : universe) {
+              //si x<y, no se puede dar el predicado
                 if (x.length < y.length) {
                     existeX = false;
                 } else {
@@ -128,7 +129,7 @@ class Entrega {
     }
 
     /*
-     * Ã‰s cert que ?x. ?!y. x�y ? 1 (mod n) ?
+     * Ãƒâ€°s cert que ?x. ?!y. x·y ? 1 (mod n) ?
      */
     static boolean exercici4(int[] universe, int n) {
         for (int x:universe){
@@ -149,11 +150,11 @@ class Entrega {
     }
 
     /*
-     * AquÃ­ teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
+     * AquÃƒÂ­ teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
      */
     static void tests() {
       // Exercici 1
-      // âˆ€x,y. P(x,y) -> Q(x) ^ R(y)
+      // Ã¢Ë†â‚¬x,y. P(x,y) -> Q(x) ^ R(y)
 
       assertThat(
           exercici1(
@@ -174,7 +175,7 @@ class Entrega {
       );
 
       // Exercici 2
-      // âˆƒ!x. âˆ€y. Q(y) -> P(x) ?
+      // Ã¢Ë†Æ’!x. Ã¢Ë†â‚¬y. Q(y) -> P(x) ?
 
       assertThat(
           exercici2(
@@ -187,13 +188,13 @@ class Entrega {
       assertThat(
           !exercici2(
               new int[] { 1, 2, 3, 4, 5, 6 },
-              x -> x % 2 == 0, // x Ã©s mÃºltiple de 2
-              x -> x % 4 == 0  // x Ã©s mÃºltiple de 4
+              x -> x % 2 == 0, // x ÃƒÂ©s mÃƒÂºltiple de 2
+              x -> x % 4 == 0  // x ÃƒÂ©s mÃƒÂºltiple de 4
           )
       );
 
       // Exercici 3
-      // Â¬(âˆƒx. âˆ€y. y âŠ† x) ?
+      // Ã‚Â¬(Ã¢Ë†Æ’x. Ã¢Ë†â‚¬y. y Ã¢Å â€  x) ?
 
       assertThat(
           exercici3(new int[][] { {1, 2}, {0, 3}, {1, 2, 3}, {} })
@@ -204,7 +205,7 @@ class Entrega {
       );
 
       // Exercici 4
-      // Ã‰s cert que âˆ€x. âˆƒ!y. xÂ·y â‰¡ 1 (mod n) ?
+      // Ãƒâ€°s cert que Ã¢Ë†â‚¬x. Ã¢Ë†Æ’!y. xÃ‚Â·y Ã¢â€°Â¡ 1 (mod n) ?
 
       assertThat(
           exercici4(
@@ -223,27 +224,27 @@ class Entrega {
   }
 
   /*
-   * AquÃ­ teniu els exercicis del Tema 2 (Conjunts).
+   * AquÃƒÂ­ teniu els exercicis del Tema 2 (Conjunts).
    *
    * De la mateixa manera que al Tema 1, per senzillesa tractarem els conjunts com arrays (sense
-   * elements repetits). Per tant, un conjunt de conjunts d'enters tendrÃ  tipus int[][].
+   * elements repetits). Per tant, un conjunt de conjunts d'enters tendrÃƒÂ  tipus int[][].
    *
-   * Les relacions tambÃ© les representarem com arrays de dues dimensions, on la segona dimensiÃ³
-   * nomÃ©s tÃ© dos elements. Per exemple
+   * Les relacions tambÃƒÂ© les representarem com arrays de dues dimensions, on la segona dimensiÃƒÂ³
+   * nomÃƒÂ©s tÃƒÂ© dos elements. Per exemple
    *   int[][] rel = {{0,0}, {1,1}, {0,1}, {2,2}};
-   * i tambÃ© donarem el conjunt on estÃ  definida, per exemple
+   * i tambÃƒÂ© donarem el conjunt on estÃƒÂ  definida, per exemple
    *   int[] a = {0,1,2};
    *
    * Les funcions f : A -> B (on A i B son subconjunts dels enters) les representam donant int[] a,
    * int[] b, i un objecte de tipus Function<Integer, Integer> que podeu avaluar com f.apply(x) (on
-   * x Ã©s un enter d'a i el resultat f.apply(x) Ã©s un enter de b).
+   * x ÃƒÂ©s un enter d'a i el resultat f.apply(x) ÃƒÂ©s un enter de b).
    */
   static class Tema2 {
     /*
-     * Ã‰s `p` una particiÃ³ d'`a`?
+     * Ãƒâ€°s `p` una particiÃƒÂ³ d'`a`?
      *
-     * `p` Ã©s un array de conjunts, haureu de comprovar que siguin elements d'`a`. Podeu suposar que
-     * tant `a` com cada un dels elements de `p` estÃ  ordenat de menor a major.
+     * `p` ÃƒÂ©s un array de conjunts, haureu de comprovar que siguin elements d'`a`. Podeu suposar que
+     * tant `a` com cada un dels elements de `p` estÃƒÂ  ordenat de menor a major.
      */
     static boolean exercici1(int[] a, int[][] p) {
         boolean [] enUso=new boolean[a.length];
@@ -267,9 +268,9 @@ class Entrega {
     }
 
     /*
-     * Comprovau si la relaciÃ³ `rel` definida sobre `a` Ã©s un ordre parcial i que `x` n'Ã©s el mÃ­nim.
+     * Comprovau si la relaciÃƒÂ³ `rel` definida sobre `a` ÃƒÂ©s un ordre parcial i que `x` n'ÃƒÂ©s el mÃƒÂ­nim.
      *
-     * Podeu soposar que `x` pertany a `a` i que `a` estÃ  ordenat de menor a major.
+     * Podeu soposar que `x` pertany a `a` i que `a` estÃƒÂ  ordenat de menor a major.
      */
     static boolean exercici2(int[] a, int[][] rel, int x) {
         boolean esRef,esAntisi,esTrans=false;
@@ -340,9 +341,9 @@ class Entrega {
     }
 
     /*
-     * Suposau que `f` Ã©s una funciÃ³ amb domini `dom` i codomini `codom`.  Trobau l'antiimatge de
+     * Suposau que `f` ÃƒÂ©s una funciÃƒÂ³ amb domini `dom` i codomini `codom`.  Trobau l'antiimatge de
      * `y` (ordenau el resultat de menor a major, podeu utilitzar `Arrays.sort()`). Podeu suposar
-     * que `y` pertany a `codom` i que tant `dom` com `codom` tambÃ© estÃ n ordenats de menor a major.
+     * que `y` pertany a `codom` i que tant `dom` com `codom` tambÃƒÂ© estÃƒÂ n ordenats de menor a major.
      */
     static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
         int indiceCumplen=0;
@@ -364,14 +365,14 @@ class Entrega {
     }
 
     /*
-     * Suposau que `f` Ã©s una funciÃ³ amb domini `dom` i codomini `codom`.  Retornau:
-     * - 3 si `f` Ã©s bijectiva
-     * - 2 si `f` nomÃ©s Ã©s exhaustiva
-     * - 1 si `f` nomÃ©s Ã©s injectiva
+     * Suposau que `f` ÃƒÂ©s una funciÃƒÂ³ amb domini `dom` i codomini `codom`.  Retornau:
+     * - 3 si `f` ÃƒÂ©s bijectiva
+     * - 2 si `f` nomÃƒÂ©s ÃƒÂ©s exhaustiva
+     * - 1 si `f` nomÃƒÂ©s ÃƒÂ©s injectiva
      * - 0 en qualsevol altre cas
      *
-     * Podeu suposar que `dom` i `codom` estÃ n ordenats de menor a major. Per comoditat, podeu
-     * utilitzar les constants definides a continuaciÃ³:
+     * Podeu suposar que `dom` i `codom` estÃƒÂ n ordenats de menor a major. Per comoditat, podeu
+     * utilitzar les constants definides a continuaciÃƒÂ³:
      */
     static final int NOTHING_SPECIAL = 0;
     static final int INJECTIVE = 1;
@@ -406,11 +407,11 @@ class Entrega {
     }
 
     /*
-     * AquÃ­ teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
+     * AquÃƒÂ­ teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
      */
     static void tests() {
       // Exercici 1
-      // `p` Ã©s una particiÃ³ d'`a`?
+      // `p` ÃƒÂ©s una particiÃƒÂ³ d'`a`?
 
       assertThat(
           exercici1(
@@ -427,14 +428,14 @@ class Entrega {
       );
 
       // Exercici 2
-      // Ã©s `rel` definida sobre `a` d'ordre parcial i `x` n'Ã©s el mÃ­nim?
+      // ÃƒÂ©s `rel` definida sobre `a` d'ordre parcial i `x` n'ÃƒÂ©s el mÃƒÂ­nim?
 
       ArrayList<int[]> divisibility = new ArrayList<int[]>();
 
       for (int i = 1; i < 8; i++) {
         for (int j = 1; j <= i; j++) {
           if (i % j == 0) {
-            // i Ã©s mÃºltiple de j, Ã©s a dir, j|i
+            // i ÃƒÂ©s mÃƒÂºltiple de j, ÃƒÂ©s a dir, j|i
             divisibility.add(new int[] { j, i });
           }
         }
@@ -492,7 +493,7 @@ class Entrega {
       );
 
       // Exercici 4
-      // classificar la funciÃ³ en res/injectiva/exhaustiva/bijectiva
+      // classificar la funciÃƒÂ³ en res/injectiva/exhaustiva/bijectiva
 
       assertThat(
           exercici4(
@@ -533,14 +534,14 @@ class Entrega {
   }
 
   /*
-   * AquÃ­ teniu els exercicis del Tema 3 (AritmÃ¨tica).
+   * AquÃƒÂ­ teniu els exercicis del Tema 3 (AritmÃƒÂ¨tica).
    *
    */
   static class Tema3 {
     /*
-     * Donat `a`, `b` retornau el mÃ xim comÃº divisor entre `a` i `b`.
+     * Donat `a`, `b` retornau el mÃƒÂ xim comÃƒÂº divisor entre `a` i `b`.
      *
-     * Podeu suposar que `a` i `b` sÃ³n positius.
+     * Podeu suposar que `a` i `b` sÃƒÂ³n positius.
      */
     static int exercici1(int a, int b) {
         int divisor, dividendo;
@@ -563,9 +564,9 @@ class Entrega {
     }
 
     /*
-     * Es cert que `a``x` + `b``y` = `c` tÃ© soluciÃ³?.
+     * Es cert que `a``x` + `b``y` = `c` tÃƒÂ© soluciÃƒÂ³?.
      *
-     * Podeu suposar que `a`, `b` i `c` sÃ³n positius.
+     * Podeu suposar que `a`, `b` i `c` sÃƒÂ³n positius.
      */
     static boolean exercici2(int a, int b, int c) {
         int mcd=exercici1(a,b);
@@ -573,7 +574,7 @@ class Entrega {
     }
 
     /*
-     * Quin es l'invers de `a` mÃ²dul `n`?
+     * Quin es l'invers de `a` mÃƒÂ²dul `n`?
      *
      * Retornau l'invers sempre entre 1 i `n-1`, en cas que no existeixi retornau -1
      */
@@ -592,7 +593,7 @@ class Entrega {
     }
 
     /*
-     * AquÃ­ teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
+     * AquÃƒÂ­ teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
      */
     static void tests() {
       // Exercici 1
@@ -607,7 +608,7 @@ class Entrega {
       );
 
       // Exercici 2
-      // `a``x` + `b``y` = `c` tÃ© soluciÃ³?
+      // `a``x` + `b``y` = `c` tÃƒÂ© soluciÃƒÂ³?
 
       assertThat(
               exercici2(4,2,2)
@@ -616,7 +617,7 @@ class Entrega {
               !exercici2(6,2,1)
       );
       // Exercici 3
-      // invers de `a` mÃ²dul `n`
+      // invers de `a` mÃƒÂ²dul `n`
       assertThat(exercici3(2, 5) == 3);
       assertThat(exercici3(2, 6) == -1);
     }
@@ -644,7 +645,7 @@ class Entrega {
     }
 
     /*
-     * Donada una matriu d'adjacencia `A` d'un graf no dirigit, digau si el graf es euleri�.
+     * Donada una matriu d'adjacencia `A` d'un graf no dirigit, digau si el graf es eulerià.
      */
     static boolean exercici2(int[][] A) {
         //determinamos el grado de cada nodo
@@ -653,7 +654,7 @@ class Entrega {
             for (int vi:v) {
                 aristas+=vi;
             }
-            //si un nodo tiene un n�mero de aristas impares, no es euleriano
+            //si un nodo tiene un número de aristas impares, no es euleriano
             if (aristas%2==1) {
                 return false;
             }
@@ -662,27 +663,27 @@ class Entrega {
     }
 
     /*
-     * Donat `n` el n�mero de fulles d'un arbre arrelat i `d` el nombre de fills dels nodes interiors,
-     * retornau el nombre total de v�rtexos de l'arbre
+     * Donat `n` el número de fulles d'un arbre arrelat i `d` el nombre de fills dels nodes interiors,
+     * retornau el nombre total de vèrtexos de l'arbre
      *
      */
     static int exercici3(int n, int d) {
-        //utilitzant la regla de les mans entrecreuades, acabam amb una equaci�
-        //de primer grau on el resultat �s el seg�ent
+        //utilitzant la regla de les mans entrecreuades, acabam amb una equació
+        //de primer grau on el resultat és el següent
         return (n*d-1)/(d-1);
     }
 
     /*
-     * Donada una matriu d'adjacencia `A` d'un graf connex no dirigit, digau si el graf cont� alg�n cicle.
+     * Donada una matriu d'adjacencia `A` d'un graf connex no dirigit, digau si el graf conté algún cicle.
      */
     static boolean exercici4(int[][] A) {
         //obtenim les dades (datos[0]=orde, datos[1]=mida) utilitzant l'exercici 1
         int [] datos=exercici1(A);
-        //l'�nic graf sense cicles �s un arbre, amb el qual V-1=E
+        //l'únic graf sense cicles és un arbre, amb el qual V-1=E
         return datos[0]-1 != datos[1]; 
     }
     /*
-     * Aqu� teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
+     * Aquí teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
      */
     static void tests() {
       // Exercici 1
@@ -697,7 +698,7 @@ class Entrega {
       );
 
       // Exercici 2
-      // `Es euleri�?`
+      // `Es eulerià?`
 
       assertThat(
               exercici2(new int[][] { {0, 1, 1}, {1, 0, 1}, {1, 1, 0}})
@@ -706,12 +707,12 @@ class Entrega {
               !exercici2(new int[][] { {0, 1, 0}, {1, 0, 1}, {0,1, 0}})
       );
       // Exercici 3
-      // `Quants de nodes t� l'arbre?`
+      // `Quants de nodes té l'arbre?`
       assertThat(exercici3(5, 2) == 9);
       assertThat(exercici3(7, 3) == 10);
 
       // Exercici 4
-      // `Cont� alg�n cicle?`
+      // `Conté algún cicle?`
       assertThat(
               exercici4(new int[][] { {0, 1, 1}, {1, 0, 1}, {1, 1, 0}})
       );
@@ -723,11 +724,11 @@ class Entrega {
   }
 
   /*
-   * Aquest mÃ¨tode `main` contÃ© alguns exemples de parÃ metres i dels resultats que haurien de donar
-   * els exercicis. Podeu utilitzar-los de guia i tambÃ© en podeu afegir d'altres (no els tendrem en
-   * compte, perÃ² Ã©s molt recomanable).
+   * Aquest mÃƒÂ¨tode `main` contÃƒÂ© alguns exemples de parÃƒÂ metres i dels resultats que haurien de donar
+   * els exercicis. Podeu utilitzar-los de guia i tambÃƒÂ© en podeu afegir d'altres (no els tendrem en
+   * compte, perÃƒÂ² ÃƒÂ©s molt recomanable).
    *
-   * Podeu aprofitar el mÃ¨tode `assertThat` per comprovar fÃ cilment que un valor sigui `true`.
+   * Podeu aprofitar el mÃƒÂ¨tode `assertThat` per comprovar fÃƒÂ cilment que un valor sigui `true`.
    */
   public static void main(String[] args) {
     Tema1.tests();
