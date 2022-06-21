@@ -414,20 +414,25 @@ class Entrega {
     static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
         int indiceCumplen = 0;
         int [] numsSeCumplen = new int[dom.length];
+        //se recorren todas las x del dominio
         for (int x : dom) {
+            //si el resultado de la función es igual a y,
+            //entonces guardamos el valor de esta x en un array
             if (f.apply(x) == y) {
                 numsSeCumplen[indiceCumplen] = x;
                 indiceCumplen++;
                 
             }
         }
+        //se guardan los valores válidos en un array del tamaño que toca
         int [] antiImagen = new int[indiceCumplen];
         for (int indice = 0 ; indice < indiceCumplen ; indice++) {
             antiImagen[indice] = numsSeCumplen[indice];
         }
+        //se ordena el array
         Arrays.sort(antiImagen);
         
-        return antiImagen; // TO DO
+        return antiImagen;
     }
 
     /*
