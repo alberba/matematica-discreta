@@ -66,7 +66,7 @@ class Entrega {
                 if (p.test(x,y)) {
                     // si el predicado anterior se cumple, se comprobarán
                     // los predicados siguientes
-                    if (!(q.test(x)&&r.test(y))) {
+                    if (!(q.test(x) && r.test(y))) {
                         // la condición no se cumple, devolvemos falso
                         return false;
                     }  
@@ -81,28 +81,28 @@ class Entrega {
      * És cert que ∃!x. ∀y. Q(y) -> P(x) ?
      */
     static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
-        int condicionesNoCumplidas,xcorrectos=0;
-        for (int x:universe) {
-            condicionesNoCumplidas=0;
-            for (int y:universe) {
-                //Q(y) -> P(x) <==> !(Q(y) V !P(x))
+        int condicionesNoCumplidas, xcorrectos = 0;
+        for (int x : universe) {
+            condicionesNoCumplidas = 0;
+            for (int y : universe) {
+                // Q(y) -> P(x) <==> !(Q(y) V !P(x))
                 // buscamos el caso en que no se cumpla
-                if(q.test(y)) {
-                    if(!p.test(x)) {
-                        //Q(y) -> P
+                if (q.test(y)) {
+                    if (!p.test(x)) {
+                        // Q(y) -> P
                         condicionesNoCumplidas++;
                     }  
                 }  
             }
             // se comprueba si la condición se cumple para todo y
-            if (condicionesNoCumplidas==0) {
+            if (condicionesNoCumplidas == 0) {
                 xcorrectos++;           
             }
         }
         // si el resultado es diferente a 1, indica que o no hay ninguna x 
         // que cumpla la condición o que no hay solo una x que la cumple,
         // por tanto, no se cumple el enunciado
-        return xcorrectos==1;
+        return xcorrectos == 1;
     }
 
     /*
@@ -122,15 +122,15 @@ class Entrega {
                 } else {
                     int pertenecenA_X = 0;
                     // se recorren los elementos de y para ver si pertenecen a X
-                    for (int yn:y) {
+                    for (int yn : y) {
                         boolean tieneX=false;
                         // se buscan elementos coincidentes entre los conjuntos x e y
-                        for (int xn:x) {
+                        for (int xn : x) {
                             // si se encuentra una x que coincida, dejamos de buscar
                             // para este elemento de y
                             if (!tieneX && (yn == xn)) {
                                 pertenecenA_X++;
-                                tieneX=true;
+                                tieneX = true;
                             }
                         }
                         // si no encontramos ya un y que sea subconjunto de x
@@ -156,11 +156,11 @@ class Entrega {
      */
     static boolean exercici4(int[] universe, int n) {
         // se recorre el universo
-        for (int x:universe) {
-            boolean tieneUnaY=false;
-            for (int y:universe) {
+        for (int x : universe) {
+            boolean tieneUnaY = false;
+            for (int y : universe) {
                 // se verifica que y sea inverso de x
-                if ((x*y)%n==1) {
+                if ((x * y) % n == 1) {
                     // si ya se ha encontrado algún inverso
                     // y se encuentra otro, entonces el enunciado
                     // no se cumple
@@ -170,7 +170,7 @@ class Entrega {
                     // esta x ahora tiene un inverso,
                     // con este boolean verificaremosmos que
                     // siempre sea así
-                    tieneUnaY=true;        
+                    tieneUnaY = true;        
                 }
             }
             // si no se encuentra ningún inverso de x,
@@ -283,29 +283,29 @@ class Entrega {
      * tant `a` com cada un dels elements de `p` està ordenat de menor a major.
      */
     static boolean exercici1(int[] a, int[][] p) {
-        boolean [] enUso=new boolean[a.length];
+        boolean [] enUso = new boolean[a.length];
         // se recorren los elementos de p
-        for (int [] pn:p) {
+        for (int [] pn : p) {
             // se reinicia el array que verifica si los elementos de la partición están en uso
             boolean [] enUsoParticion=new boolean[pn.length];
             // se recorren los elementos de a
-            for (int an=0;an<a.length;an++) {
+            for (int an = 0 ; an < a.length ; an++) {
                 // y los elementos de la posible partición 
-                for (int pni=0;pni<pn.length;pni++) {
+                for (int pni = 0 ; pni < pn.length ; pni++) {
                     // se buscan coincidencias (con valores que no tengan ya coincidencias)
-                    if (pn[pni]==a[an]&&!enUso[an]) {
+                    if (pn[pni] == a[an] && !enUso[an]) {
                         // al encontrar una coincidencia, señalamos que ambos valores
                         // tienen una coincidencia
-                        enUso[an]=true;
-                        enUsoParticion[pni]=true;
+                        enUso[an] = true;
+                        enUsoParticion[pni] = true;
                     }
                 } 
             }
             // se recorren el array de booleans que verifica si cada elemento tiene coincidencia
-            for(int pni=0;pni<pn.length;pni++){
+            for (int pni = 0 ; pni < pn.length ; pni++){
                 // si un elemento no tiene coincidencia, entonces este elemento de p
                 // no es una partición de a, por ende, no se cumple el enunciado
-                if(!enUsoParticion[pni]){
+                if (!enUsoParticion[pni]){
                     return false;
                 }
             }
@@ -323,34 +323,34 @@ class Entrega {
         // orden parcial -> reflexiva, antisimétrica y transitiva
         boolean esTrans;
         boolean [] cumpleCondicion;
-        int relacionesX=0;
+        int relacionesX = 0;
       
         // se comprueba que x sea el mínimo de a
-        for (int [] reln:rel) {
-            if (x==reln[0]) {
+        for (int [] reln : rel) {
+            if (x == reln[0]) {
                 relacionesX++;
             }
         }
         // si x se relaciona con todos los elementos de a, entonces
         // es mínimo, en caso contrario, no lo será
-        if (relacionesX!=a.length) {
+        if (relacionesX != a.length) {
             return false;
         }
         
         // reflexiva
-        cumpleCondicion=new boolean[a.length];
-        for (int an=0;an<a.length;an++) {    
-            for (int [] reln:rel) {
+        cumpleCondicion = new boolean[a.length];
+        for (int an = 0 ; an < a.length ; an++) {    
+            for (int [] reln : rel) {
                 // se comprueba que los elementos de la relación
                 // sean el mismo
-                if (a[an]==reln[0]&&a[an]==reln[1]) {
-                    cumpleCondicion[an]=true;
+                if (a[an] == reln[0] && a[an] == reln[1]) {
+                    cumpleCondicion[an] = true;
                 }
             }
         }
         // si algún elemento de a no se relaciona con él mismo,
         // entonces podemos decir que la relación no es reflexiva
-        for (int an=0;an<a.length;an++) { 
+        for (int an = 0 ; an < a.length ; an++) { 
             if (!cumpleCondicion[an]) {
                 return false;
             }
@@ -359,15 +359,15 @@ class Entrega {
         // antisimétrica
         // para cada relación, buscamos otra con los mismos
         // elementos, pero invertidos
-        for(int an=0;an<a.length;an++){    
-            for (int [] reln1:rel) {
-                int x1=reln1[0],y1=reln1[1];
-                for (int [] reln2:rel) {
-                    int x2=reln2[0],y2=reln2[1];
-                    if (x1==y2&&x2==y1) {
+        for(int an = 0 ; an < a.length ; an++){    
+            for (int [] reln1 : rel) {
+                int x1 = reln1[0], y1 = reln1[1];
+                for (int [] reln2 : rel) {
+                    int x2 = reln2[0], y2 = reln2[1];
+                    if (x1 == y2 && x2 == y1) {
                         // si al encontrar la relación con elementos invertidos,
                         // vemos que los elementos son distintos, no es antisimétrica
-                        if (!(x1==y1)) {
+                        if (!(x1 == y1)) {
                             return false;
                         }
                     }
@@ -379,18 +379,18 @@ class Entrega {
         // se buscan dos relaciones, en las que el segundo componente
         // de la primera relación coincida con el primer componente de
         // la segunda relación
-        for (int an=0;an<a.length;an++) {    
-            for (int [] reln1:rel) {
-                int x1=reln1[0],y1=reln1[1];
-                for (int [] reln2:rel) {
-                    int x2=reln2[0],y2=reln2[1];
+        for (int an = 0 ; an < a.length ; an++) {    
+            for (int [] reln1 : rel) {
+                int x1 = reln1[0], y1 = reln1[1];
+                for (int [] reln2 : rel) {
+                    int x2 = reln2[0], y2 = reln2[1];
                     // se encuentran a R b y b R c
-                    if (y1==x2&&x1!=y2) {
+                    if (y1 == x2 && x1 != y2) {
                         esTrans=false;
-                        for (int [] reln3:rel) {
-                            int x3=reln3[0],y3=reln3[1];
+                        for (int [] reln3 : rel) {
+                            int x3 = reln3[0], y3 = reln3[1];
                             // se comprueba a R c
-                            if (x3==x1&&y3==y2){
+                            if (x3 == x1 && y3 == y2){
                                 esTrans=true;
                             }
                         }
@@ -412,18 +412,18 @@ class Entrega {
      * que `y` pertany a `codom` i que tant `dom` com `codom` també estàn ordenats de menor a major.
      */
     static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
-        int indiceCumplen=0;
-        int [] numsSeCumplen=new int[dom.length];
-        for (int x:dom) {
-            if (f.apply(x)==y) {
-                numsSeCumplen[indiceCumplen]=x;
+        int indiceCumplen = 0;
+        int [] numsSeCumplen = new int[dom.length];
+        for (int x : dom) {
+            if (f.apply(x) == y) {
+                numsSeCumplen[indiceCumplen] = x;
                 indiceCumplen++;
                 
             }
         }
-        int [] antiImagen=new int[indiceCumplen];
-        for (int indice=0;indice<indiceCumplen;indice++) {
-            antiImagen[indice]=numsSeCumplen[indice];
+        int [] antiImagen = new int[indiceCumplen];
+        for (int indice = 0 ; indice < indiceCumplen ; indice++) {
+            antiImagen[indice] = numsSeCumplen[indice];
         }
         Arrays.sort(antiImagen);
         
@@ -446,26 +446,26 @@ class Entrega {
     static final int BIJECTIVE = INJECTIVE + SURJECTIVE;
 
     static int exercici4(int[] dom, int[] codom, Function<Integer, Integer> f) {
-        int [] numAntiImagen=new int[codom.length];
-        boolean esInyectiva=true,esExhaustiva=true;
-        for (int y=0;y<codom.length;y++) {
-            for (int x:dom) {
-                if (f.apply(x)==codom[y]) {
+        int [] numAntiImagen = new int[codom.length];
+        boolean esInyectiva = true, esExhaustiva = true;
+        for (int y = 0 ; y < codom.length ; y++) {
+            for (int x : dom) {
+                if (f.apply(x) == codom[y]) {
                     numAntiImagen[y]++;
                 }
-                if (numAntiImagen[y]>1) {
-                    esInyectiva=false;
+                if (numAntiImagen[y] > 1) {
+                    esInyectiva = false;
                 }
             }
-            if (numAntiImagen[y]==0) {
-                esExhaustiva=false;
+            if (numAntiImagen[y] == 0) {
+                esExhaustiva = false;
             }
         }
-        if(esInyectiva&&!esExhaustiva) {
+        if (esInyectiva && !esExhaustiva) {
             return INJECTIVE;
-        } else if(!esInyectiva&&esExhaustiva) {
+        } else if (!esInyectiva && esExhaustiva) {
             return SURJECTIVE;
-        } else if(esInyectiva&&esExhaustiva) {
+        } else if (esInyectiva && esExhaustiva) {
             return BIJECTIVE;
         } else {
             return NOTHING_SPECIAL;
@@ -621,7 +621,7 @@ class Entrega {
         }
         int resto=dividendo%divisor;
         
-        while(resto!=0) {
+        while (resto!=0) {
             dividendo=divisor;
             divisor=resto;
             resto=dividendo%divisor;
@@ -636,7 +636,7 @@ class Entrega {
      */
     static boolean exercici2(int a, int b, int c) {
         int mcd=exercici1(a,b);
-        return (c%mcd==0); // TO DO
+        return (c % mcd == 0); // TO DO
     }
 
     /*
@@ -646,12 +646,12 @@ class Entrega {
      */
     static int exercici3(int a, int n) {
         int resultado;
-        if (exercici1(a,n)!=1) {
+        if (exercici1(a,n) != 1) {
             return -1; 
         }
         for (int x=0;x<n;x++) {
-            resultado=((a*x)%n);
-            if (resultado==1) {
+            resultado=((a*x) % n);
+            if (resultado == 1) {
                 return x;
             }
         }
@@ -694,19 +694,19 @@ class Entrega {
      * Donada una matriu d'adjacencia `A` d'un graf no dirigit, retornau l'ordre i la mida del graf.
      */
     static int[] exercici1(int[][] A) {
-        int ordre=0;
-        int mida=0;
+        int ordre = 0;
+        int mida = 0;
         // cada fila de la matriz es un nodo
         for (int [] v:A) {
             ordre++;
             // los elementos de una fila representan las aristas
             for (int vi:v) {
-                mida+=vi;
+                mida += vi;
             }
         }
         // las aristas se cuentan dos veces en la matriz, por tanto
         // dividimos entre 2
-        mida/=2;
+        mida /= 2;
       return new int[]{ordre, mida}; // TO DO
     }
 
@@ -716,12 +716,12 @@ class Entrega {
     static boolean exercici2(int[][] A) {
         // determinamos el grado de cada nodo
         for (int [] v:A) {
-            int aristas=0;
+            int aristas = 0;
             for (int vi:v) {
                 aristas+=vi;
             }
             // si un nodo tiene un número de aristas impares, no es euleriano
-            if (aristas%2==1) {
+            if (aristas % 2 == 1) {
                 return false;
             }
         }
@@ -736,17 +736,17 @@ class Entrega {
     static int exercici3(int n, int d) {
         // utilizando la regla de las manos entrelazadas, acabamos con una equación
         // de primer grado donde el resultado es el siguiente
-        return (n*d-1)/(d-1);
+        return (n * d - 1) / (d - 1);
     }
 
     /*
      * Donada una matriu d'adjacencia `A` d'un graf connex no dirigit, digau si el graf conté algún cicle.
      */
     static boolean exercici4(int[][] A) {
-        // obtenemos los datos (datos[0]=orden, datos[1]=tamaño) utilitzando el ejercicio 1
+        // obtenemos los datos (datos[0] = orden, datos[1] = tamaño) utilitzando el ejercicio 1
         int [] datos=exercici1(A);
-        // el único grafo sin ciclos es un árbol, en el cual V-1=E
-        return datos[0]-1 != datos[1]; 
+        // el único grafo sin ciclos es un árbol, en el cual V - 1 = E
+        return datos[0] - 1 != datos[1]; 
     }
     /*
      * Aquí teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
