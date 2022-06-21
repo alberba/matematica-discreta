@@ -386,7 +386,7 @@ class Entrega {
                     int x2 = reln2[0], y2 = reln2[1];
                     // se encuentran a R b y b R c
                     if (y1 == x2 && x1 != y2) {
-                        esTrans=false;
+                        esTrans = false;
                         for (int [] reln3 : rel) {
                             int x3 = reln3[0], y3 = reln3[1];
                             // se comprueba a R c
@@ -611,20 +611,20 @@ class Entrega {
      */
     static int exercici1(int a, int b) {
         int divisor, dividendo;
-        if (a>b) {
-            divisor=b;
-            dividendo=a;
+        if (a > b) {
+            divisor = b;
+            dividendo = a;
         }
         else {
-            divisor=a;
-            dividendo=b;
+            divisor = a;
+            dividendo = b;
         }
         int resto=dividendo%divisor;
         
-        while (resto!=0) {
-            dividendo=divisor;
-            divisor=resto;
-            resto=dividendo%divisor;
+        while (resto != 0) {
+            dividendo = divisor;
+            divisor = resto;
+            resto = (dividendo % divisor);
         } 
         return divisor; // TO DO
     }
@@ -635,7 +635,7 @@ class Entrega {
      * Podeu suposar que `a`, `b` i `c` són positius.
      */
     static boolean exercici2(int a, int b, int c) {
-        int mcd=exercici1(a,b);
+        int mcd = exercici1(a, b);
         return (c % mcd == 0); // TO DO
     }
 
@@ -646,11 +646,11 @@ class Entrega {
      */
     static int exercici3(int a, int n) {
         int resultado;
-        if (exercici1(a,n) != 1) {
+        if (exercici1(a, n) != 1) {
             return -1; 
         }
-        for (int x=0;x<n;x++) {
-            resultado=((a*x) % n);
+        for (int x = 0 ; x < n ; x++) {
+            resultado = ((a * x) % n);
             if (resultado == 1) {
                 return x;
             }
@@ -697,10 +697,10 @@ class Entrega {
         int ordre = 0;
         int mida = 0;
         // cada fila de la matriz es un nodo
-        for (int [] v:A) {
+        for (int [] v : A) {
             ordre++;
             // los elementos de una fila representan las aristas
-            for (int vi:v) {
+            for (int vi : v) {
                 mida += vi;
             }
         }
@@ -715,10 +715,10 @@ class Entrega {
      */
     static boolean exercici2(int[][] A) {
         // determinamos el grado de cada nodo
-        for (int [] v:A) {
+        for (int [] v : A) {
             int aristas = 0;
-            for (int vi:v) {
-                aristas+=vi;
+            for (int vi : v) {
+                aristas += vi;
             }
             // si un nodo tiene un número de aristas impares, no es euleriano
             if (aristas % 2 == 1) {
@@ -744,7 +744,7 @@ class Entrega {
      */
     static boolean exercici4(int[][] A) {
         // obtenemos los datos (datos[0] = orden, datos[1] = tamaño) utilitzando el ejercicio 1
-        int [] datos=exercici1(A);
+        int [] datos = exercici1(A);
         // el único grafo sin ciclos es un árbol, en el cual V - 1 = E
         return datos[0] - 1 != datos[1]; 
     }
