@@ -59,14 +59,14 @@ class Entrega {
         BiPredicate<Integer, Integer> p,
         Predicate<Integer> q,
         Predicate<Integer> r) {
-        //Recorremos los elementos del universo
-        for(int x:universe) {
+        // Recorremos los elementos del universo
+        for (int x:universe) {
             for (int y:universe) {
                 // !(P(x,y) -> Q(x) ^ R(y)) <==> P(x,y) ^ !(Q(x) ^ R(y))                
-                if(p.test(x,y)) {
+                if (p.test(x,y)) {
                     // si el predicado anterior se cumple, se comprobarán
                     // los predicados siguientes
-                    if(!(q.test(x)&&r.test(y))) {
+                    if (!(q.test(x)&&r.test(y))) {
                         // la condición no se cumple, devolvemos falso
                         return false;
                     }  
@@ -82,7 +82,7 @@ class Entrega {
      */
     static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
         int condicionesNoCumplidas,xcorrectos=0;
-        for(int x:universe) {
+        for (int x:universe) {
             condicionesNoCumplidas=0;
             for (int y:universe) {
                 //Q(y) -> P(x) <==> !(Q(y) V !P(x))
@@ -95,7 +95,7 @@ class Entrega {
                 }  
             }
             // se comprueba si la condición se cumple para todo y
-            if(condicionesNoCumplidas==0) {
+            if (condicionesNoCumplidas==0) {
                 xcorrectos++;           
             }
         }
