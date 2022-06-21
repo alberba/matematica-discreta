@@ -414,22 +414,22 @@ class Entrega {
     static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
         int indiceCumplen = 0;
         int [] numsSeCumplen = new int[dom.length];
-        //se recorren todas las x del dominio
+        // se recorren todas las x del dominio
         for (int x : dom) {
-            //si el resultado de la función es igual a y,
-            //entonces guardamos el valor de esta x en un array
+            // si el resultado de la función es igual a y,
+            // entonces guardamos el valor de esta x en un array
             if (f.apply(x) == y) {
                 numsSeCumplen[indiceCumplen] = x;
                 indiceCumplen++;
                 
             }
         }
-        //se guardan los valores válidos en un array del tamaño que toca
+        // se guardan los valores válidos en un array del tamaño que toca
         int [] antiImagen = new int[indiceCumplen];
         for (int indice = 0 ; indice < indiceCumplen ; indice++) {
             antiImagen[indice] = numsSeCumplen[indice];
         }
-        //se ordena el array
+        // se ordena el array
         Arrays.sort(antiImagen);
         
         return antiImagen;
@@ -453,19 +453,25 @@ class Entrega {
     static int exercici4(int[] dom, int[] codom, Function<Integer, Integer> f) {
         int [] numAntiImagen = new int[codom.length];
         boolean esInyectiva = true, esExhaustiva = true;
+        // se recorren las y del codominio
         for (int y = 0 ; y < codom.length ; y++) {
+            // se recorren las x del dominio
             for (int x : dom) {
+                // se cuenta cuántas x dan lugar a esa y
                 if (f.apply(x) == codom[y]) {
                     numAntiImagen[y]++;
                 }
+                // si hay más de una, entonces no es inyectiva
                 if (numAntiImagen[y] > 1) {
                     esInyectiva = false;
                 }
             }
+            // si no hay ninguna, tampoco es exhaustiva
             if (numAntiImagen[y] == 0) {
                 esExhaustiva = false;
             }
         }
+        // devolución de resultados
         if (esInyectiva && !esExhaustiva) {
             return INJECTIVE;
         } else if (!esInyectiva && esExhaustiva) {
@@ -615,6 +621,8 @@ class Entrega {
      * Podeu suposar que `a` i `b` són positius.
      */
     static int exercici1(int a, int b) {
+        // determinamos el divisor y el dividendo,
+        // según cuál de los valores es el mayor
         int divisor, dividendo;
         if (a > b) {
             divisor = b;
@@ -624,14 +632,16 @@ class Entrega {
             divisor = a;
             dividendo = b;
         }
-        int resto=dividendo%divisor;
-        
+        // se calcula el resto
+        int resto = (dividendo % divisor);
+        // mediante el algoritmo de euclides se busca
+        // el máximo común divisor de a y b
         while (resto != 0) {
             dividendo = divisor;
             divisor = resto;
             resto = (dividendo % divisor);
         } 
-        return divisor; // TO DO
+        return divisor;
     }
 
     /*
@@ -640,8 +650,12 @@ class Entrega {
      * Podeu suposar que `a`, `b` i `c` són positius.
      */
     static boolean exercici2(int a, int b, int c) {
+        // utilizando el ejercicio 1 buscamos el
+        // máximo común divisor de a y b
         int mcd = exercici1(a, b);
-        return (c % mcd == 0); // TO DO
+        // si c es divisible entre mcd(a, b), entonces
+        // podemos deducir que sí existe solución
+        return (c % mcd == 0);
     }
 
     /*
@@ -650,17 +664,20 @@ class Entrega {
      * Retornau l'invers sempre entre 1 i `n-1`, en cas que no existeixi retornau -1
      */
     static int exercici3(int a, int n) {
-        int resultado;
+        // utilizando el ejercicio 1, se busca el máximo común divisor de a y b, si
+        // a y n no son coprimos, entonces no existirá un inverso de a
         if (exercici1(a, n) != 1) {
             return -1; 
         }
-        for (int x = 0 ; x < n ; x++) {
-            resultado = ((a * x) % n);
-            if (resultado == 1) {
+        // si existe inverso, lo buscaremos  recorriendo todos los valores entre 1 y n-1
+        for (int x = 1 ; x <= n ; x++) {
+            // si el resto entre a y x es 1, entonces x será inverso de a
+            if (((a * x) % n) == 1) {
                 return x;
             }
         }
-        return -1; // TO DO
+        // si no se encuentra ningún inverso, se devuelve -1
+        return -1;
     }
 
     /*
