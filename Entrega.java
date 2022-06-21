@@ -8,87 +8,98 @@ import java.util.function.Predicate;
 import java.util.Set;
 
 /*
- * Aquesta entrega consisteix en implementar tots els mÃƒÂ¨todes annotats amb el comentari "// TO DO".
+ * Aquesta entrega consisteix en implementar tots els mètodes annotats amb el comentari "// TO DO".
  *
- * Cada tema tÃƒÂ© el mateix pes, i l'avaluaciÃƒÂ³ consistirÃƒÂ  en:
+ * Cada tema té el mateix pes, i l'avaluació consistirà en:
  *
- * - Principalment, el correcte funcionament de cada mÃƒÂ¨tode (provant amb diferents entrades). Teniu
- *   alguns exemples al mÃƒÂ¨tode `main`.
+ * - Principalment, el correcte funcionament de cada mètode (provant amb diferents entrades). Teniu
+ *   alguns exemples al mètode `main`.
  *
- * - La neteja del codi (pensau-ho com faltes d'ortografia). L'estÃƒÂ ndar que heu de seguir ÃƒÂ©s la guia
- *   d'estil de Google per Java: https://google.github.io/styleguide/javaguide.html . No ÃƒÂ©s
- *   necessari seguir-la estrictament, perÃƒÂ² ens basarem en ella per jutjar si qualcuna se'n desvia
+ * - La neteja del codi (pensau-ho com faltes d'ortografia). L'estàndar que heu de seguir és la guia
+ *   d'estil de Google per Java: https://google.github.io/styleguide/javaguide.html . No és
+ *   necessari seguir-la estrictament, però ens basarem en ella per jutjar si qualcuna se'n desvia
  *   molt.
  *
- * Per com estÃƒÂ  plantejada aquesta entrega, no necessitau (ni podeu) utilitzar cap `import`
- * addicional, ni mÃƒÂ¨todes de classes que no estiguin ja importades. El que sÃƒÂ­ podeu fer ÃƒÂ©s definir
- * tots els mÃƒÂ¨todes addicionals que volgueu (de manera ordenada i dins el tema que pertoqui).
+ * Per com està plantejada aquesta entrega, no necessitau (ni podeu) utilitzar cap `import`
+ * addicional, ni mètodes de classes que no estiguin ja importades. El que sí podeu fer és definir
+ * tots els mètodes addicionals que volgueu (de manera ordenada i dins el tema que pertoqui).
  *
- * Podeu fer aquesta entrega en grups de com a mÃƒÂ xim 3 persones, i necessitareu com a minim Java 8.
- * Per entregar, posau a continuaciÃƒÂ³ els vostres noms i entregau ÃƒÂºnicament aquest fitxer.
- * - Nom 1: Santiago Rattenbach Paliza-BartolomÃƒÂ©
+ * Podeu fer aquesta entrega en grups de com a màxim 3 persones, i necessitareu com a minim Java 8.
+ * Per entregar, posau a continuació els vostres noms i entregau únicament aquest fitxer.
+ * - Nom 1: Santiago Rattenbach Paliza-Bartolomé
  * - Nom 2: Albert Salom Vanrell
  * - Nom 3:
  *
- * L'entrega es farÃƒÂ  a travÃƒÂ©s d'una tasca a l'Aula Digital abans de la data que se us hagui
- * comunicat i vos recomanam que treballeu amb un fork d'aquest repositori per seguir mÃƒÂ©s fÃƒÂ cilment
- * les actualitzacions amb enunciats nous. Si no podeu visualitzar bÃƒÂ© algun enunciat, assegurau-vos
- * que el vostre editor de texte estigui configurat amb codificaciÃƒÂ³ UTF-8.
+ * L'entrega es farà a través d'una tasca a l'Aula Digital abans de la data que se us hagui
+ * comunicat i vos recomanam que treballeu amb un fork d'aquest repositori per seguir més fàcilment
+ * les actualitzacions amb enunciats nous. Si no podeu visualitzar bé algun enunciat, assegurau-vos
+ * que el vostre editor de texte estigui configurat amb codificació UTF-8.
  */
+
 class Entrega {
   /*
-   * AquÃƒÂ­ teniu els exercicis del Tema 1 (LÃƒÂ²gica).
+   * Aquí teniu els exercicis del Tema 1 (Lògica).
    *
-   * Els mÃƒÂ¨todes reben de parÃƒÂ metre l'univers (representat com un array) i els predicats adients
-   * (per exemple, `Predicate<Integer> p`). Per avaluar aquest predicat, si `x` ÃƒÂ©s un element de
-   * l'univers, podeu fer-ho com `p.test(x)`, tÃƒÂ© com resultat un booleÃƒÂ . Els predicats de dues
-   * variables sÃƒÂ³n de tipus `BiPredicate<Integer, Integer>` i similarment s'avaluen com
+   * Els mètodes reben de paràmetre l'univers (representat com un array) i els predicats adients
+   * (per exemple, `Predicate<Integer> p`). Per avaluar aquest predicat, si `x` és un element de
+   * l'univers, podeu fer-ho com `p.test(x)`, té com resultat un booleà. Els predicats de dues
+   * variables són de tipus `BiPredicate<Integer, Integer>` i similarment s'avaluen com
    * `p.test(x, y)`.
    *
    * En cada un d'aquests exercicis us demanam que donat l'univers i els predicats retorneu `true`
-   * o `false` segons si la proposiciÃƒÂ³ donada ÃƒÂ©s certa (suposau que l'univers ÃƒÂ©s suficientment
-   * petit com per utilitzar la forÃƒÂ§a bruta)
+   * o `false` segons si la proposició donada és certa (suposau que l'univers és suficientment
+   * petit com per utilitzar la força bruta)
    */
   static class Tema1 {
     /*
-     * Ãƒâ€°s cert que ?x,y. P(x,y) -> Q(x) ^ R(y) ?
+     * És cert que ∀x,y. P(x,y) -> Q(x) ^ R(y) ?
      */
     static boolean exercici1(
         int[] universe,
         BiPredicate<Integer, Integer> p,
         Predicate<Integer> q,
         Predicate<Integer> r) {
+        //Recorremos los elementos del universo
         for(int x:universe) {
             for (int y:universe) {
-                // !(P(x,y) -> Q(x) ^ R(y)) == P(x,y) ^ !(Q(x) ^ R(y))                
+                // !(P(x,y) -> Q(x) ^ R(y)) <==> P(x,y) ^ !(Q(x) ^ R(y))                
                 if(p.test(x,y)) {
+                    // si el predicado anterior se cumple, comprobará los predicados siguientes
                     if(!(q.test(x)&&r.test(y))) {
+                        //la condición no se cumple, devolvemos falso
                         return false;
                     }  
                 }  
             }
         }
+      //si llega a este punto, indica que siempre se cumple
       return true;
     }
 
     /*
-     * Ãƒâ€°s cert que ?!x. ?y. Q(y) -> P(x) ?
+     * És cert que ∃!x. ∀y. Q(y) -> P(x) ?
      */
     static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
         int condicionesNoCumplidas,xcorrectos=0;
         for(int x:universe) {
             condicionesNoCumplidas=0;
             for (int y:universe) {
+                //Q(y) -> P(x) <==> !Q(y) V P(x)
                 if(q.test(y)) {
                     if(!p.test(x)) {
+                        //Q(y) -> 
                         condicionesNoCumplidas++;
                     }  
                 }  
             }
+            //comprueba si la condición se cumple para todo y
             if(condicionesNoCumplidas==0) {
                 xcorrectos++;           
             }
         }
+        //si el resultado es diferente a 1, indica que o no hay ninguna x 
+        //que cumpla la condición o que no hay solo una x que la cumple,
+        //por tanto, no se cumple el enunciado
         return xcorrectos==1;
     }
 
