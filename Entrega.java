@@ -29,7 +29,7 @@ import java.util.Set;
  * - Nom 1: Santiago Rattenbach Paliza-Bartolomé
  * - Nom 2: Albert Salom Vanrell
  * - Nom 3:
- * Jorge
+ * Jorge guapo
  * L'entrega es farà a través d'una tasca a l'Aula Digital abans de la data que se us hagui
  * comunicat i vos recomanam que treballeu amb un fork d'aquest repositori per seguir més fàcilment
  * les actualitzacions amb enunciats nous. Si no podeu visualitzar bé algun enunciat, assegurau-vos
