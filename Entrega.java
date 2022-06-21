@@ -28,7 +28,7 @@ import java.util.Set;
  * Per entregar, posau a continuació els vostres noms i entregau únicament aquest fitxer.
  * - Nom 1: Santiago Rattenbach Paliza-Bartolomé
  * - Nom 2: Albert Salom Vanrell
- * - Nom 3:
+ * - Nom 3: DFDSFSFSFSDFSDFsddfsd
  *
  * L'entrega es farà a través d'una tasca a l'Aula Digital abans de la data que se us hagui
  * comunicat i vos recomanam que treballeu amb un fork d'aquest repositori per seguir més fàcilment
