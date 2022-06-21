@@ -627,8 +627,7 @@ class Entrega {
         if (a > b) {
             divisor = b;
             dividendo = a;
-        }
-        else {
+        } else {
             divisor = a;
             dividendo = b;
         }
